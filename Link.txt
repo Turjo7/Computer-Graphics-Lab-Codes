@@ -1,0 +1,11 @@
+1. https://www.opengl.org/resources/libraries/glut/spec3/node10.html
+2. https://www.google.com/search?q=glutcreatewindow&oq=glutC&aqs=chrome.2.69i57j69i61j0l4.3001j0j7&sourceid=chrome&ie=UTF-8
+3. https://www.opengl.org/resources/libraries/glut/spec3/node11.html
+4. https://www.opengl.org/resources/libraries/glut/spec3/node46.html
+5. https://www.opengl.org/resources/libraries/glut/spec3/node14.html
+6. https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glClearColor.xml
+7. https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glClear.xml
+8. https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glBegin.xml
+9. https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glFlush.xml
+10. https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glColor.xml
+11. https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glVertex.xml

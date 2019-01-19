@@ -1,0 +1,211 @@
+#include<windows.h>
+#include <GL/glut.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define PI 3.1416
+#define slice 600
+
+static float	tx	=  0.0;
+static float	ty	=  15.0;
+
+static float tx_1=0.0;
+static float ty_1=-10.0;
+
+
+static float tx_2=6.0;
+static float ty_2=-10.0;
+
+
+
+static float tx_3=-6.0;
+static float ty_3=-10.0;
+
+static float tx_4=-16.0;
+static float ty_4=-35.0;
+
+
+static float tx_5=16.0;
+static float ty_5=-35.0;
+
+
+
+
+static float tx_6=-12.0;
+static float ty_6=12.0;
+
+
+static float tx_7=-14.5;
+static float ty_7=9.7;
+
+static float tx_8=0.0;
+static float ty_8=16.7;
+
+
+
+
+void circle(float radius_x, float radius_y)
+{
+	int i = 0;
+	float angle = 0.0;
+
+	glBegin(GL_POLYGON);
+
+		for(i = 0; i < slice; i++)
+		{
+			angle = 2 * PI * i / slice;
+			glVertex3f (cos(angle) * radius_x, sin(angle) * radius_y, 0);
+		}
+
+	glEnd();
+}
+
+void display(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+
+
+
+
+
+
+	glPushMatrix();  // Draws The Head Of Bay Max
+	glColor3f(1.0, 1.0, 1.0);
+	glTranslatef(tx,ty,0);
+	circle(6,6);
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glColor3f(0.0f,0.0f,0.0f);
+
+	glBegin(GL_POINTS); // To Check The Center Point
+	glVertex2d(0,0);
+	glEnd();
+
+	glPopMatrix();
+
+
+	glPushMatrix(); // Draws The Body Of Bay Max
+	glColor3f(1.0, 1.0, 1.0);
+	glTranslatef(tx_1,ty_1,0);
+	circle(8,20);
+
+	glPopMatrix();
+
+
+	glPushMatrix(); // Draws The Right Hand Of Bay Max
+	        glRotatef(55, 0, 0, 1);
+           glColor3f(1.0, 1.0, 1.0);
+           glTranslatef(tx_2,ty_2,0);
+	       circle(6,16);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+
+	glPushMatrix(); // Draws The Left Hand Of Bay Max
+	        glRotatef(-55, 0, 0, 1);
+           glColor3f(1.0, 1.0, 1.0);
+           glTranslatef(tx_3,ty_3,0);
+	       circle(6,16);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+
+	glPushMatrix(); // Draws The Right Leg Of Bay Max
+	        glRotatef(50, 0, 0, 1);
+           glColor3f(1.0, 1.0, 1.0);
+           glTranslatef(tx_4,ty_4,0);
+	       circle(8,17);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+
+	glPushMatrix(); // Draws The Left Leg Of Bay Max
+	        glRotatef(-50, 0, 0, 1);
+           glColor3f(1.0, 1.0, 1.0);
+           glTranslatef(tx_5,ty_5,0);
+	       circle(8,17);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+
+
+	glPushMatrix(); // Draws The Right Eye Of Bay Max
+          glRotatef(-50, 0, 0, 1);
+           glColor3f(0.0, 0.0, 0.0);
+           glTranslatef(tx_6,ty_6,0);
+	       circle(0.5,0.5);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+	glPushMatrix(); // Draws The Left Eye Of Bay Max
+	        glRotatef(-50, 0, 0, 1);
+           glColor3f(0.0, 0.0, 0.0);
+           glTranslatef(tx_7,ty_7,0);
+	       circle(0.5,0.5);
+            //glScaled(2, 1, 0);
+
+	glPopMatrix();
+
+
+	glPushMatrix(); // Draws The Line Between  The Eyes Of Bay Max
+
+
+         glTranslatef(tx_8,ty_8,0);
+          glBegin(GL_LINES);
+          glColor3f(0.0, 0.0, 0.0);
+	      glVertex2f(-2.1f,0.1f);
+          glVertex2f(1.2f,0.1f);
+
+	       glEnd();
+
+	glPopMatrix();
+
+
+
+
+
+
+
+
+
+
+
+
+	glPopMatrix();
+	glFlush();
+}
+
+void init(void)
+{
+	glClearColor (0.0, 0.0, 0.0, 0.0);
+	glOrtho(-50.0, 50.0, -50.0, 50.0, -50.0, 50.0);
+}
+
+
+
+int main()
+{
+	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize (1000, 1000);
+	glutInitWindowPosition (0, 0);
+	glutCreateWindow ("Translating Circle");
+	init();
+	glutDisplayFunc(display);
+
+	glutMainLoop();
+	return 0;   /* ANSI C requires main to return int. */
+}
+

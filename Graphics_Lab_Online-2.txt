@@ -1,0 +1,421 @@
+#include<windows.h>
+#include <GL/glut.h>
+
+#include <stdlib.h>
+
+#include <math.h>
+
+
+static GLfloat spin = 0.0;//initial degree for spinning
+static float	tx	=  0.0;
+static float	ty	=  0.0;
+
+
+    float cx=0.6;
+    float cx1=0.8;
+    float cy=0.35;
+    float r=0.05;
+    int num_segments=10000;
+
+
+void car_move(void){
+
+        tx=tx-0.001;
+
+         glBegin(GL_POLYGON);
+         glColor3f(0.0, 1.0, 0.0);
+
+         glRotatef(spin,0,0,1);
+	for(int ii = 0; ii < num_segments; ii++)
+	{
+		float theta = 2.0f * 3.1415926f * float(ii) / float(num_segments);//get the current angle
+
+		float x = r * cos(theta);//calculate the x component
+		float y = r * sin(theta);//calculate the y component
+
+		glVertex2f(x + cx, y + cy);//output vertex
+
+	}
+	glEnd();
+
+
+
+
+
+	glBegin(GL_POLYGON);
+	 glColor3f(0.0, 1.0, 0.0);
+	 glRotatef(spin,0,0,1);
+
+
+	for(int ii = 0; ii < num_segments; ii++)
+	{
+		float theta = 2.0f * 3.1415926f * float(ii) / float(num_segments);//get the current angle
+
+		float x = r * cos(theta);//calculate the x component
+		float y = r * sin(theta);//calculate the y component
+
+		glVertex2f(x + cx1, y + cy);//output vertex
+
+	}
+	glEnd();
+
+
+
+
+
+
+     glBegin(GL_QUADS);
+
+
+     glColor3f(1.0f,0.0f,0.0f);
+
+    glVertex2f(0.5f,0.5f);
+    glVertex2f(0.90f,0.5f);
+
+     glVertex2f(0.90f,0.4f);
+    glVertex2f(0.5f,0.4f);
+
+
+     glEnd();
+
+
+      glBegin(GL_POLYGON);
+
+
+     glColor3f(0.0f,0.0f,1.0f);
+
+
+
+
+     glVertex2f(0.56f,0.5f);
+    glVertex2f(0.84f,0.5f);
+
+    glVertex2f(0.8f,0.6f);
+    glVertex2f(0.6f,0.6f);
+
+
+
+
+
+
+     glEnd();
+
+
+   glutPostRedisplay();
+
+
+
+}
+
+
+
+void blade_rotate(void){
+
+    glPushMatrix();
+
+   spin=spin+1;
+
+        spin=spin-360.0;
+    glPushMatrix(); // Draws The First Blade of Wind Mill
+
+    glTranslatef(0.67,0.700,0);
+    glRotatef(spin,0,0,1);
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.56,0.17,0.92);
+    glVertex2d(-0.01,0.0);
+    glVertex2d(0.01,0.0);
+    glVertex2d(0.0,0.3);
+
+
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix(); // Draws The Second Blade of Wind Mill
+
+    glTranslatef(0.72,0.700,0);
+    glRotatef(spin,0,0,1);
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.56,0.17,0.92);
+    glVertex2d(-0.01,0.0);
+    glVertex2d(0.01,0.0);
+    glVertex2d(0.0,0.3);
+
+
+    glEnd();
+    glPopMatrix();
+
+
+
+
+    glPushMatrix(); // Draws The Third Blade of Wind Mill
+
+    glTranslatef(0.74,0.600,0);
+    glRotatef(spin,0,0,1);
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.56,0.17,0.92);
+    glVertex2d(-0.01,0.0);
+    glVertex2d(0.01,0.0);
+    glVertex2d(0.0,0.3);
+
+
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix(); // Draws The Fourth Blade of Wind Mill
+
+    glTranslatef(0.67,0.600,0);
+    glRotatef(spin,0,0,1);
+    glBegin(GL_TRIANGLES);
+    glColor3f(0.56,0.17,0.92);
+    glVertex2d(-0.01,0.0);
+    glVertex2d(0.01,0.0);
+    glVertex2d(0.0,0.3);
+
+
+    glEnd();
+    glPopMatrix();
+
+
+
+
+
+    glPopMatrix();
+
+}
+
+
+
+void display(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+	glPushMatrix(); // Outer Push Matrix
+
+
+
+
+
+
+
+    glPushMatrix(); // Draws the lower portion of the road
+
+	glBegin(GL_QUADS);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2d(-8,-0.55);
+	glVertex2d(8,-0.55);
+	glVertex2d(8,-1);
+	glVertex2d(-8,-1);
+    glEnd();
+	glPopMatrix();
+
+
+
+
+
+
+    glPushMatrix(); // Draws the night sky
+	glBegin(GL_QUADS);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2d(-8,0.1);
+	glVertex2d(8,0.1);
+	glVertex2d(8,4);
+	glVertex2d(-8,4);
+    glEnd();
+	glPopMatrix();
+
+
+
+	 glPushMatrix();  // Draws The Second Building
+    glTranslatef(-0.55,1.60,0);
+   // glRotatef(90,0,0,1);
+    glScaled(0.2,1.5,0);
+
+    glBegin(GL_QUADS);
+    glColor3f(0.0,0.0,1.0);
+    glVertex2d(-0.5,-0.55);
+	glVertex2d(0.5,-0.55);
+	glVertex2d(0.5,-1);
+	glVertex2d(-0.5,-1);
+    glEnd();
+    glPopMatrix();
+
+
+
+  //
+
+
+
+
+
+    glPushMatrix();  // Draws The First Building
+    glTranslatef(-0.81,1.60,0);
+   // glRotatef(90,0,0,1);
+    glScaled(0.2,1.5,0);
+
+    glBegin(GL_QUADS);
+    glColor3f(0.0,0.0,1.0);
+    glVertex2d(-0.5,-0.55);
+	glVertex2d(0.5,-0.55);
+	glVertex2d(0.5,-1);
+	glVertex2d(-0.5,-1);
+    glEnd();
+    glPopMatrix();
+
+
+
+
+
+
+    glPopMatrix();
+
+
+
+
+    glPushMatrix();  // Draws The Window Of The Second Building
+    glTranslatef(-0.55,1.20,0);
+   // glRotatef(90,0,0,1);
+    glScaled(0.04,0.9,0);
+
+    glBegin(GL_QUADS);
+    glColor3f(1.0,1.0,0.0);
+    glVertex2d(-0.5,-0.55);
+	glVertex2d(0.5,-0.55);
+	glVertex2d(0.5,-1);
+	glVertex2d(-0.5,-1);
+    glEnd();
+    glPopMatrix();
+
+
+
+
+    glPushMatrix();  // Draws The Window Of The First Building Building
+    glTranslatef(-0.81,1.20,0);
+   // glRotatef(90,0,0,1);
+    glScaled(0.04,0.9,0);
+
+    glBegin(GL_QUADS);
+    glColor3f(1.0,1.0,0.0);
+    glVertex2d(-0.5,-0.55);
+	glVertex2d(0.5,-0.55);
+	glVertex2d(0.5,-1);
+	glVertex2d(-0.5,-1);
+    glEnd();
+    glPopMatrix();
+
+
+
+    glPushMatrix();  // Draws The WindMill Stand
+    glTranslatef(0.70,1.60,0);
+   // glRotatef(90,0,0,1);
+    glScaled(0.022,1.5,0);
+
+    glBegin(GL_QUADS);
+    glColor3f(0.54,0.54,0.51);
+    glVertex2d(-0.3,-0.65);
+	glVertex2d(0.3,-0.65);
+	glVertex2d(0.3,-1);
+	glVertex2d(-0.3,-1);
+    glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    blade_rotate();
+    glPopMatrix();
+
+
+    glPushMatrix(); // Draws The Car
+    glTranslatef(tx,ty,0);
+    glTranslatef(-0.1,-0.6,0);
+    car_move();// Calls The Car Movement Function
+
+
+    glPopMatrix();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	glPopMatrix(); // Outer Pop Matrix
+
+	glFlush();
+}
+
+void spinDisplay_left(void)
+{
+   spin = spin + 1;
+   if (spin > 360.0)
+      spin = spin - 360.0;
+   glutPostRedisplay();
+}
+
+void spinDisplay_right(void)
+{
+   spin = spin - 1;
+   if (spin < 0.0)
+      spin = spin +360.0;
+   glutPostRedisplay();
+}
+
+
+void init(void)
+{
+	glClearColor (0.99, 0.97, 0.93, 1.0);
+	//glOrtho(-25.0, 25.0, -25.0, 25.0, -25.0, 25.0);
+}
+
+
+void my_keyboard(unsigned char key, int x, int y)
+{
+
+	switch (key) {
+
+		case 'l':
+
+
+			glutIdleFunc(car_move);
+
+			break;
+
+		case 'r':
+		    glutIdleFunc(blade_rotate);
+
+			break;
+
+		case 's':
+			 glutIdleFunc(NULL);
+			 break;
+
+	  default:
+			break;
+	}
+}
+
+
+
+
+int main()
+{
+	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize (500, 500);
+	glutInitWindowPosition (100, 100);
+	glutCreateWindow ("Online 2 Solve");
+	init();
+    glutDisplayFunc(display);
+	glutKeyboardFunc(my_keyboard);
+
+	glutMainLoop();
+	return 0;
+}
+
